@@ -1,4 +1,4 @@
-console.log("Hello World!")
+
 
 /*
 Console Rock Paper Scissors Plan
@@ -41,13 +41,21 @@ function playRound(playerSelection,computerSelection){
     } else if ( ( (player == "rock") && (comp == "scissors") ) || ( (player == "paper") && (comp == "rock") ) || ( (player == "scissors") && (comp == "paper") ) ){
         
         result = "Win";
+        playerWins ++
+        
     } else {
         
         result = "Lose";
-    }    
+        computerWins ++
+    }  
+    rounds++
+    console.log(result);
+    writeResult(result,player,comp);
     return result;
 }
+/*
 function game(){
+    
     let win = 0;
 
     for (let i=1; i<6;i++){
@@ -85,7 +93,90 @@ function game(){
 
 
     }
+
+}
+*/
+function writeResult(result,playerSelection,computerSelection){
+   const p =  document.querySelector('#result');
+   p.textContent = "";
+   switch (result) {
+    case "Win":
+        p.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+        break;
+    case "Lose":
+        p.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
+        break;
+    default:
+        p.textContent = `Wow a draw, what are the chances of you picking ${playerSelection} and the computer picking ${computerSelection}? :0`;
+    }
+}
+function game(){
+    const score = document.querySelector("#score");
+    score.textContent = "";
+    if (rounds ==0) {
+        score.textContent = `This game is about to start, the first one to get to 5 points gets a huge congratulation!`;
+        score.style.cssText = "color: black; background: white; font-size: 16px;";
+        rock.disabled = false;
+        paper.disabled = false;
+        scissors.disabled = false;
+        start.disabled = true;
+    } else if (playerWins == 5) {
+        score.textContent = "Congratulations, you won!";
+        score.style.cssText = "color: white; background: black; font-size: 26px;";
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        start.disabled = false;
+    } else if (computerWins == 5){
+        score.textContent = "Congratulations Computer, you won! Or in your language, bipbupbipbup";
+        score.style.cssText = "color: white; background: black; font-size: 26px;";
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        start.disabled = false;
+    }else{
+        score.textContent = `Player Wins: ${playerWins} Computer Wins: ${computerWins} Rounds: ${rounds}.`;
+    }
+    
 }
 
+
+/*
+console.log("Hello World!")
 console.log("Let's play 5 rounds of rock paper scissors!");
 game();
+*/
+
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const start = document.querySelector("#start");
+let playerWins = 0;
+let computerWins = 0;
+let rounds = 0;
+
+rock.disabled = true;
+paper.disabled = true;
+scissors.disabled = true;
+
+start.addEventListener("click", () => {
+    playerWins = 0;
+    computerWins = 0;
+    rounds = 0;
+    game();
+    
+});
+
+rock.addEventListener("click", () => {
+    playRound("rock", computerPlay());
+    game();
+});
+paper.addEventListener("click", () => {
+    playRound("paper", computerPlay());
+    game();
+});
+scissors.addEventListener("click", ()=>{
+    playRound("scissors", computerPlay());
+    game();
+});
+
