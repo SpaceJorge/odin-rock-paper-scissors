@@ -5,21 +5,90 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors JS game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>Welcome to the Rock Paper Scissors Challenge</h1>
-    <p>Beat the machine and get incredible prices in return!</p>
-    
-    <Button id="start"> Start Game </Button>
-    <div id="container">
-        <button id="rock"> Rock </button>
-        <button id="paper"> Paper </button>
-        <button id="scissors"> Scissors </button>
-    </div>
+    <div class="container">
+        <div class="header">
+            <div>Super Complex Games</div>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Rock_(geology)" target="_blank">About Rocks</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Paper" target="_blank">About Papers</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Scissors" target="_blank">About Scissors</a></li>
+            </ul>
+        </div>
+        <div class="first">
+            <div class="left">
+                <h1>Rock Paper Scissors World Championship 2022</h1>
+                <p>First player to get to 5 wins gets unbelievable prices!</p>
+                <div class="button"id="start"><a>Play!</a></div>
+            </div>
+            <div class="right">
+                <img id="trophy" src="images/trophy.jpg" alt="Wow such an amazing image, you must be thrilled" height="300" width="300">
+            </div>
+        </div>
 
-    <p id="result"></p>
-    <p id="score"></p>
+        <div class="game">
+            <div class="top">
+                <h2>Fight!</h2>
+                <p id="score"></p>
+            </div>
+
+            <div id="container">
+                <button class="gameButton" id="rock"> Rock </button>
+                <button class="gameButton" id="paper"> Paper </button>
+                <button class="gameButton" id="scissors"> Scissors </button>
+            </div>
+            
+            <p id="result"></p>
+            
+        </div>
+
+        <div class="second">
+            <h2>Some legendary information</h2>
+            <div class="bigdata">
+                <div class="data">
+                    <img class="info" src="images/rock.jpg" alt="image one" height="100" width="100">
+                    <div class="subtext">Aw, such a cute rock</div>
+                </div>
+                <div class="data">
+                    <img class="info" src="images/paper.jpg" alt="image two" height="100" width="100">
+                    <div class="subtext">Paper so sharp it could be a scissor!</div>
+                </div>
+                <div class="data">
+                    <img class="info" src="images/goodboi.jpg" alt="image three" height="100" width="100">
+                    <div class="subtext">A good boi with a ball. No, you can't play that, thats cheating doggy!</div>
+                </div>
+                <div class="data">  
+                    <img class="info" src="images/scissors.png" alt="image four" height="100" width="100">
+                    <div class="subtext">The Scissor Sisters, but do they feel like dancing or like playing rock paper scissors?</div>
+                </div>
+            </div>
+        </div>
+        <div class="third">
+            <div class="quote">
+                <h3>Since i've started playing this game i've gained strength, my hair started growing, i am 10 times bigger and much smarter.</h3>
+                <p>-Adult(That used to be a baby)</p>
+            </div>
+            
+        </div>
+        <div class="fourth">
+            <div class="call">
+                <div class="box">
+                <h4>Sign up to give us your information, everybody has it anyway!</h4>
+                <p>Get the harshest rocks, the slickest papers and the sexyest scissors. One mail per hour, forever!</p>
+                </div>
+                <div class="button" id="signup"><a>Sign up</a></div>
+            </div>
+            
+        </div>
+        <div class="footer">
+            <div>Copyright c The Chaotic Project 2022</div>
+        </div>
+    </div>
+    
+    
     <script src="code.js"></script>  
 </body>
 

@@ -18,15 +18,15 @@ function computerPlay() {
     let choice = "Scissors";
     switch (true) {
         case random >= 66:
-            console.log("Rock");
+            
             choice = "Rock";
             break;
         case random >= 33:
-            console.log("Paper");
+            
             choice = "Paper";
             break;
         default:
-            console.log("Scissors");           
+                     
     }
     return choice;
 
@@ -49,53 +49,11 @@ function playRound(playerSelection,computerSelection){
         computerWins ++
     }  
     rounds++
-    console.log(result);
+    
     writeResult(result,player,comp);
     return result;
 }
-/*
-function game(){
-    
-    let win = 0;
 
-    for (let i=1; i<6;i++){
-        let playerSelection = "undefined";
-        let flag = 0;
-
-        while ( flag == 0 ){
-            playerSelection = prompt("Choose between Rock, Paper or Scissors");
-            if (playerSelection == null) {
-                console.log("You can't do that in the middle of a game!");
-            }else if ( playerSelection.toLowerCase() == "rock" || playerSelection.toLowerCase() == "paper" || playerSelection.toLowerCase() == "scissors" ){
-                flag = 1;
-                console.log("bip bup processing results bip bup");
-            }else{
-                console.log("Wrong input, it can only be Rock, Paper or Scissors!");
-            }
-        }
-
-        let computerSelection = computerPlay();
-        let result = playRound(playerSelection,computerSelection);
-        
-        switch (result) {
-            case "Win":
-                console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-                win ++;
-                break;
-            case "Lose":
-                console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-                break;
-            default:
-                console.log(`Wow a draw, what are the chances of you picking ${playerSelection} and the computer picking ${computerSelection}? :0`);
-        }
-
-        console.log(`You have won ${win} out of ${i} rounds.`);
-
-
-    }
-
-}
-*/
 function writeResult(result,playerSelection,computerSelection){
    const p =  document.querySelector('#result');
    p.textContent = "";
@@ -106,34 +64,45 @@ function writeResult(result,playerSelection,computerSelection){
     case "Lose":
         p.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
         break;
-    default:
+    case "Intro":
+        p.textContent = "";
+        break;
+        default:
         p.textContent = `Wow a draw, what are the chances of you picking ${playerSelection} and the computer picking ${computerSelection}? :0`;
     }
 }
 function game(){
     const score = document.querySelector("#score");
+    const trophy = document.querySelector("#trophy");
     score.textContent = "";
     if (rounds ==0) {
         score.textContent = `This game is about to start, the first one to get to 5 points gets a huge congratulation!`;
-        score.style.cssText = "color: black; background: white; font-size: 16px;";
+        score.style.cssText = "color: white; font-size: 16px;";
         rock.disabled = false;
         paper.disabled = false;
         scissors.disabled = false;
         start.disabled = true;
+        trophy.src="images/trophy.jpg";
+        trophy.style.width= "300px";
+
     } else if (playerWins == 5) {
         score.textContent = "Congratulations, you won!";
-        score.style.cssText = "color: white; background: black; font-size: 26px;";
+        score.style.cssText = "color: white; font-size: 26px;";
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
         start.disabled = false;
+        trophy.src="images/congratulationsHuman.png";
+        trophy.style.width= "500px";
     } else if (computerWins == 5){
         score.textContent = "Congratulations Computer, you won! Or in your language, bipbupbipbup";
-        score.style.cssText = "color: white; background: black; font-size: 26px;";
+        score.style.cssText = "color: white; font-size: 26px;";
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
         start.disabled = false;
+        trophy.src="images/congratulationsComputer.png";
+        trophy.style.width= "500px";
     }else{
         score.textContent = `Player Wins: ${playerWins} Computer Wins: ${computerWins} Rounds: ${rounds}.`;
     }
@@ -151,6 +120,8 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const start = document.querySelector("#start");
+const gameSection = document.querySelector(".game");
+const signup = document.querySelector("#signup");
 let playerWins = 0;
 let computerWins = 0;
 let rounds = 0;
@@ -163,6 +134,8 @@ start.addEventListener("click", () => {
     playerWins = 0;
     computerWins = 0;
     rounds = 0;
+    gameSection.style.cssText="display:block;"
+    writeResult("Intro",0,0);
     game();
     
 });
@@ -178,5 +151,9 @@ paper.addEventListener("click", () => {
 scissors.addEventListener("click", ()=>{
     playRound("scissors", computerPlay());
     game();
+});
+
+signup.addEventListener("click",()=>{
+    alert("Come on, you really shouldn't give me anything. Go out and be free while you can you sexy thang.");
 });
 
